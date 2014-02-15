@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if request %}
+<h1>Список оружия</h1>
+{% if weapons_list %}
+    <div class="bs-example">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Класс игрока</th>
+            <th>Автоматический огонь</th>
+            <th>Одиночные выстрелы</th>
+            <th>Короткие очереди</th>
+            <th>Скорость стрельбы</th>
+            <th>Дальность</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for weapon in weapons_list %}
+            <tr>
+                <td>{{ weapon['weapon'] }}</td>
+                <td>{{ weapon['classplayer'] }}</td>
+                <td>{{ weapon['auto_fire'] }}</td>
+                <td>{{ weapon['single_shot_fire']}}</td>
+                <td>{{ weapon['burst_fire'] }}</td>
+                <td>{{ weapon['range_fire'] }}</td>
+                <td>{{ weapon['rate_of_fire'] }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+            <h3>Ничего не найдено</h3>
+    {% endif %}
+
+{% endif %}
+{% if control %}
+   <div class="container">
+
+      <form class="form-signin" role="form" action="" method="post">
+        <h2 class="form-signin-heading">Параметры запроса</h2>
+            <p>Автоматический огонь</p>
+            <select name="auto_fire" class = "form-control">
+               <option value="YES">Да</option>
+               <option value="NO">Нет</option>
+            </select>
+            <p>Одиночный огонь</p>
+            <select name="single_shot_fire" class = "form-control">
+               <option value="YES">Да</option>
+               <option value="NO">Нет</option>
+            </select>
+            <p>Короткие очереди</p>
+            <select name="burst_fire" class = "form-control">
+               <option value="YES">Да</option>
+               <option value="NO">Нет</option>
+            </select>
+            <p>Дальность</p>
+            <select name="range_fire" class = "form-control">
+               <option value="SHORT">Короткая</option>
+               <option value="MEDIUM">Средняя</option>
+               <option value="LONG">Длинная</option>
+               <option value="MEDIUM">Очень длинная</option>
+            </select>
+        <button class="btn btn-lg btn-default btn-block" type="submit">Отправить</button>
+      </form>
+
+    </div> <!-- /container -->
+
+{% endif %}
+
+{% endblock %}

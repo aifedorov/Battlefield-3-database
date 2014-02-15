@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if request %}
+<h1>Список наград</h1>
+
+    <div class="bs-example">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Тип</th>
+            <th>Название</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for award in awards_list %}
+            <tr>
+                <td>{{ award['type'] }}</td>
+                <td>{{ award['name'] }}</td>
+                <td>{{ award['terms'] }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+{% endif %}
+{% if control %}
+   <div class="container">
+
+      <form class="form-signin" role="form" action="" method="post">
+        <h2 class="form-signin-heading">Параметры запроса</h2>
+            <p>Тип наград</p>
+            <select name="award_type" class = "form-control">
+               <option value="MEDAL">Медали</option>
+               <option value="RIBBONS">Нашивки</option>
+               <option value="DOG TAGS">Жетоны</option>
+            </select>
+        <button class="btn btn-lg btn-default btn-block" type="submit">Отправить</button>
+      </form>
+
+    </div> <!-- /container -->
+
+{% endif %}
+
+{% endblock %}

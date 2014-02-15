@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if request %}
+<h1>Список карт</h1>
+
+    <div class="bs-example">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Площадь</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for map in maps_list %}
+            <tr>
+                <td>{{ map['name'] }}</td>
+                <td>{{ map['area'] }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+{% endif %}
+{% if control %}
+   <div class="container">
+
+      <form class="form-signin" role="form" action="" method="post">
+        <h2 class="form-signin-heading">Параметры запроса</h2>
+            <label>
+                <input type="checkbox" name="order_by_area"> Сортировать по площади
+            </label>
+        <button class="btn btn-lg btn-default btn-block" type="submit">Отправить</button>
+      </form>
+
+    </div> <!-- /container -->
+
+{% endif %}
+
+{% endblock %}

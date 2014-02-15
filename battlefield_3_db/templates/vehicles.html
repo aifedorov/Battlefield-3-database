@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if request %}
+<h1>Список техники</h1>
+
+    <div class="bs-example">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for vehicle in vehicles_list %}
+            <tr>
+                <td>{{ vehicle['id'] }}</td>
+                <td>{{ vehicle['name'] }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+{% endif %}
+{% if control %}
+   <div class="container">
+
+      <form class="form-signin" role="form" action="" method="post">
+        <h2 class="form-signin-heading">Параметры запроса</h2>
+            <p>Класс техники</p>
+            <select name="vehicle_class" class = "form-control">
+               <option value="MBT">MBT</option>
+               <option value="AHS">AHS</option>
+               <option value="IFV">IFV</option>
+               <option value="MA">MA</option>
+               <option value="TD">TD</option>
+               <option value="AHA">AHA</option>
+               <option value="AA">AA</option>
+               <option value="AJF">AJF</option>
+            </select>
+            <label>
+                <input type="checkbox" name="order_by_name"> Сортировать по имени
+            </label>
+        <button class="btn btn-lg btn-default btn-block" type="submit">Отправить</button>
+      </form>
+
+    </div> <!-- /container -->
+
+{% endif %}
+
+{% endblock %}

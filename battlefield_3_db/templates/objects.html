@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if request %}
+<h1>Список объектов</h1>
+
+    <div class="bs-example">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Площадь</th>
+            <th>Высота</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for object in objects_list %}
+            <tr>
+                <td>{{ object['name'] }}</td>
+                <td>{{ object['area'] }}</td>
+                <td>{{ object['height'] }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+{% endif %}
+{% if control %}
+   <div class="container">
+
+      <form class="form-signin" role="form" action="" method="post">
+        <h2 class="form-signin-heading">Параметры запроса</h2>
+            <label>
+                <input type="checkbox" name="order_by_name"> Сортировать по имени
+            </label>
+            <label>
+                <input type="checkbox" name="order_by_height"> Сортировать по высоте
+            </label>
+        <button class="btn btn-lg btn-default btn-block" type="submit">Отправить</button>
+      </form>
+
+    </div> <!-- /container -->
+
+{% endif %}
+
+{% endblock %}

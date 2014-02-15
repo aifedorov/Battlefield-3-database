@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if request %}
+
+<h1>Список пользователей</h1>
+{% if users_list %}
+    <div class="bs-example">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Место в рейтинге</th>
+            <th>Ник</th>
+            <th>Email</th>
+            <th>Звание</th>
+            <th>Любимая техника</th>
+            <th>Любимый класс</th>
+            <th>Любимое оружие</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for user in users_list %}
+            <tr>
+                <td>{{ user['id'] }}</td>
+                <td>{{ user['username'] }}</td>
+                <td>{{ user['email'] }}</td>
+                <td>{{ user['rank'] }}</td>
+                <td>{{ user['weapon'] }}</td>
+                <td>{{ user['vehicle'] }}</td>
+                <td>{{ user['classplayer'] }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+    {% else %}
+    <h3>Ничего не найдено</h3>
+    {% endif %}
+{% endif %}
+{% if control %}
+
+        <form class="form-signin" role="form" action="" method="post">
+        <h2 class="form-signin-heading">Параметры запроса</h2>
+            <p>Диапозон id пользователей</p>
+            <p><input type=number min="0" name=id_min required></p>
+            <p><input type=number min="0" name=id_max required></p>
+            <label>
+                <input type="checkbox" name="order_by_name"> Сортировать по имени
+            </label>
+            <button class="btn btn-lg btn-default btn-block" type="submit">Отправить</button>
+      </form>
+{% endif %}
+{%  endblock %}

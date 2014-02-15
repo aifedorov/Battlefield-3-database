@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>Список званий</h1>
+
+    <div class="bs-example">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Номер</th>
+            <th>Название</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for rank in ranks_list %}
+            <tr>
+                <td>{{ rank['id'] }}</td>
+                <td>{{ rank['name'] }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+{% endblock %}

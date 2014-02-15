@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Список классов</h1>
+
+    <div class="bs-example">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Номер</th>
+            <th>Название</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for classplayer in classplayer_list %}
+            <tr>
+                <td>{{ classplayer['id'] }}</td>
+                <td>{{ classplayer['name'] }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+{% endblock %}
